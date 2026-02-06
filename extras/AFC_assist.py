@@ -600,7 +600,6 @@ class Espooler:
         Helper function to perform assist move while printing
 
         :param print_time: Pre-computed print_time for scheduling assist pins
-        :param movement: Amount in mm to move spool
         """
         time = print_time
         if self.lane_obj.weight < self.enable_assist_weight:
