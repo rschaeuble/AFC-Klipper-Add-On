@@ -555,13 +555,11 @@ class Espooler:
         :return float: Calculated print_time
         """
         now = self.reactor.monotonic()
-
-        if systime is None:
-            systime = now
+        target_time = systime if systime is not None else now
 
         # Must be at least PIN_MIN_TIME in the future. Otherwise, the command might be scheduled too late,
         # causing Klipper to error out because it missed a deadline.
-        return self.mcu.estimated_print_time(max(systime, now + PIN_MIN_TIME))
+        return self.mcu.estimated_print_time(max(target_time, now + PIN_MIN_TIME))
 
     def _kick_start(self, print_time, reverse=False):
         """
